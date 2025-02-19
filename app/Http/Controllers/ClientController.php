@@ -93,38 +93,6 @@ class ClientController extends Controller
         //
     }
 
-    public function getClient(int $id) {
-
-
-        $client = Client::findOrFail($id);
-
-        $output = array ("Numeroclient" => $client->Numeroclient,"nom" => $client->nom,"email" => $client->email,"cartebancaire" => $client->cartebancaire) ;
-        return(response()->json($client ));       
-        
-
-        
-    }
-
-    public function getAllClient() 
-    {
-        $clients = Client::all(); // Récupère tous les clients
-
-        if ($clients->isEmpty()) {
-            return response()->json(['message' => 'Aucun client trouvé'], 404);  // Retourne un message si aucun client n'est trouvé
-        }
-
-        // Retourne une liste des clients formatée
-        $output = $clients->map(function ($client) {
-            return [
-                "Numeroclient" => $client->Numeroclient,
-                "nom" => $client->nom,
-                "email" => $client->email,
-                "cartebancaire" => $client->cartebancaire
-            ];
-        });
-
-        return response()->json($output);
-    }
 
 
     
